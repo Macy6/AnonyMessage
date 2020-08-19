@@ -6,6 +6,7 @@ import './Chat.css';
 
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
 
 let socket;
 
@@ -57,11 +58,12 @@ console.log(message, messages);
     return (
        <div className="outerContainer">
          <div className ="container">
-           <InfoBar room={room}/>
-
-           <Input />
+           <InfoBar room={room} />
+           <Messages messages={messages} name={name} />
+           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
 
          </div>
+         <TextContainer users={users}/> // then you need to loop through users and display all the users in the room.
        </div>
     )
 }
