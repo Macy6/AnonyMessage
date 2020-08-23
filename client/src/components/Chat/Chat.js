@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
-import './Chat.css';
-
+import TextContainer from '../TextContainer/TextContainer';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
+import './Chat.css';
+
 
 let socket;
 
@@ -14,9 +15,10 @@ let socket;
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'localhost:5000';
+    const ENDPOINT = '192.168.0.12:5000';
 
     useEffect(() => {
       const { name, room } = queryString.parse(location.search);
@@ -40,7 +42,10 @@ const Chat = ({ location }) => {
     useEffect(() => {
       socket.on('message', (message) => {
        setMessages([...messages, message]);
-  })
+  });
+      socket.on("roomData", ({ users }) => {
+        setUsers(users);
+      });
 }, [messages]); 
 
 // function for sending messages
@@ -63,9 +68,9 @@ console.log(message, messages);
            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
 
          </div>
+         <TextContainer users={users}/>
        </div>
-    ) //remember to put this outside of the inner div, before the outside div: 
-     //<TextContainer users={users}/> then you need to loop through users and display all the users in the room. check his github!
+    )
 }
 
 export default Chat;
