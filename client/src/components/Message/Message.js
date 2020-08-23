@@ -18,7 +18,7 @@ const Message = ({ message: { user, text }, name }) => {
         isSentByCurrentUser
         ? (
           <div className="messageContainer justifyEnd">
-              <p className="sentText pr-10">{trimmedName}</p>  // adds to the right padding
+              <p className="sentText pr-10">{trimmedName}</p>
               <div className="messageBox backgroundBlue">
                   <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
               </div>
@@ -29,9 +29,9 @@ const Message = ({ message: { user, text }, name }) => {
             <div className="messageBox backgroundLight">
                 <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
             </div>
-            <p className="sentText pl-10">{user}</p>    // adds to the left padding
+            <p className="sentText pl-10">{user}</p>
           </div>
-        )
+        ) // pl-10 and pr-10 add to the left and right padding of the user message box.
     )
 
 

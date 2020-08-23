@@ -63,9 +63,9 @@ console.log(message, messages);
            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
 
          </div>
-         <TextContainer users={users}/> // then you need to loop through users and display all the users in the room.
        </div>
-    )
+    ) //remember to put this outside of the inner div, before the outside div: 
+     //<TextContainer users={users}/> then you need to loop through users and display all the users in the room. check his github!
 }
 
 export default Chat;
